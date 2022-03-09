@@ -8,9 +8,10 @@ var formEl = document.querySelector('#searching-page');
 var input = document.querySelector('#input');
 var searchBtn = document.getElementById('button');
 var apiKey = 'k_iblvk1h1';
+var giphyApiKey = 'F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y';
 
 var imdbURL = 'https://imdb-api.com/en/API/Keyword/' ;
-
+var giphyURL ='https://api.giphy.com/v1/gifs/search?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&q=';
 
 var handleSearchSubmit = function(event){
     event.preventDefault();
@@ -19,10 +20,30 @@ var handleSearchSubmit = function(event){
     var id = input.value;
     if(id){
         userInput(id);
+        giphySearch(id);
     } else {
         console.log('not a valid input');
     }
 }
+// id = 'giphy';
+
+var giphySearch = function(userSearch){
+    var giphySearchURL = giphyURL + userSearch + '&limit=25&offset=0&rating=g&lang=en' ;
+    fetch(giphySearchURL)
+    .then(function(response){
+        if(response.ok)
+        return response.json();
+    })
+    .then(function(data){
+        return console.log(data);
+    })
+    .catch(error => console.log('error', error));
+}
+
+
+
+
+
 
 
 
@@ -44,4 +65,4 @@ var userInput = function(userSearch){
 
 
 
-searchBtn.addEventListener('click',handleSearchSubmit);S
+searchBtn.addEventListener('click',handleSearchSubmit);
