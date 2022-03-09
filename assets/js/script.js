@@ -7,11 +7,14 @@ console.log("here");
 var formEl = document.querySelector('#searching-page');
 var input = document.querySelector('#input');
 var searchBtn = document.getElementById('button');
-var apiKey = 'k_iblvk1h1';
+// var apiKey = 'k_iblvk1h1';
 var giphyApiKey = 'F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y';
-
-var imdbURL = 'https://imdb-api.com/en/API/Keyword/' ;
+var omdbApiKey = '9add4f79';
+// var imdbURL = 'https://imdb-api.com/en/API/Keyword/' ;
 var giphyURL ='https://api.giphy.com/v1/gifs/search?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&q=';
+var omdbURL = 'http://www.omdbapi.com/?apikey=9add4f79&s='
+
+
 
 var handleSearchSubmit = function(event){
     event.preventDefault();
@@ -25,7 +28,6 @@ var handleSearchSubmit = function(event){
         console.log('not a valid input');
     }
 }
-// id = 'giphy';
 
 var giphySearch = function(userSearch){
     var giphySearchURL = giphyURL + userSearch + '&limit=25&offset=0&rating=g&lang=en' ;
@@ -41,15 +43,8 @@ var giphySearch = function(userSearch){
 }
 
 
-
-
-
-
-
-
-
 var userInput = function(userSearch){
-    var userSearchURL = imdbURL + apiKey +'/' + userSearch;
+    var userSearchURL = omdbURL + userSearch;
     // console.log(userSearchURL);
     fetch(userSearchURL)
     .then(function (response) {
