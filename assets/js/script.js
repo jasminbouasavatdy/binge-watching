@@ -1,6 +1,7 @@
 //api omdbapi: http://www.omdbapi.com/?i=tt3896198&apikey=9add4f79
-var displayInfo = document.querySelector('#center-div');
-var giphyResults = document.querySelector('#aside-right');
+var displayInfoEl = document.querySelector('#center-div');
+var giphyResultsEl = document.querySelector('#aside-right');
+var savedResultsEl = document.querySelector('#aside-left');
 var formEl = document.querySelector('#searching-page');
 var input = document.querySelector('#input');
 var dropdown = document.querySelector('#format');
@@ -9,7 +10,7 @@ var searchBtn = document.getElementById('button');
 var giphyApiKey = 'F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y';
 var omdbApiKey = '9add4f79';
 // var imdbURL = 'https://imdb-api.com/en/API/Keyword/' ;
-var giphyURL = 'https://api.giphy.com/v1/gifs/search?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&q=';
+var giphyURL = 'https://api.giphy.com/v1/gifs/random?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&tag=';
 var omdbURL = 'http://www.omdbapi.com/?apikey=9add4f79&s='
 
 // input = user search id=input
@@ -27,10 +28,36 @@ var handleSearchSubmit = function (event) {
   } else {
     console.log("not a valid input"); //create a modal window
   }
+  var storedInput = JSON.parse(localStorage.getItem('binge')) || [];
+  var newInput = storedInput.concat({
+  input:id,
+  option:format
+  })
+  localStorage.setItem('binge',JSON.stringify(newInput))
+  history();
 };
 
+function history(){
+  var storedHistory = JSON.parse(localStorage.getItem('binge')) || [];
+  console.log(storedHistory);
+  savedResultsEl.innerHTML = '';
+  for (var searchTerm of storedHistory){
+     var searchTermButton = document.createElement('button');
+     var termCol = document.createElement('div');
+     termCol.setAttribute('class','col-12');
+     searchTermButton.style.height= "100%";
+     searchTermButton.style.width= "100%";
+     searchTermButton.textContent = searchTerm.input
+     termCol.appendChild(searchTermButton);
+     savedResultsEl.appendChild(termCol)
+  }
+}
+history();
+
+
+
 var giphySearch = function (userSearch) {
-    var giphySearchURL = giphyURL + userSearch + '&limit=25&offset=0&rating=g&lang=en';
+    var giphySearchURL = giphyURL + userSearch;
     fetch(giphySearchURL)
         .then(function (response) {
             if (response.ok)
@@ -38,17 +65,15 @@ var giphySearch = function (userSearch) {
         })
         .then(function (data) {
              console.log(data);
-             for(var i = 0; i < 5; i++){
-                
-              var newCardEl = document.createElement('div')
+              var newCardEl = document.createElement('div');
               var imgEl = document.createElement('img');
-              imgEl.src = data.data[i].images['480w_still'].url;
-              imgEl.width = 480;
+              imgEl.src = data.data.images.downsized.url;
+              imgEl.alt = data.data.title;
+              imgEl.width = 250;
 
               newCardEl.appendChild(imgEl);
   
-              giphyResults.appendChild(newCardEl);
-             }
+              giphyResultsEl.appendChild(newCardEl);
         })
         .catch(error => console.log('error', error));
 }
@@ -77,7 +102,7 @@ var userInput = function (userSearch, movieType) {
                 cardEl.appendChild(typeEl);
                 cardEl.appendChild(yearEl);
     
-                displayInfo.appendChild(cardEl);
+                displayInfoEl.appendChild(cardEl);
             }
         })
         .catch(error => console.log('error', error));
