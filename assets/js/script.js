@@ -4,6 +4,7 @@ console.log("here");
 
 
 //api omdbapi: http://www.omdbapi.com/?i=tt3896198&apikey=9add4f79
+var displayInfo = document.querySelector('#center-div')
 var formEl = document.querySelector('#searching-page');
 var input = document.querySelector('#input');
 var searchBtn = document.getElementById('button');
@@ -11,17 +12,17 @@ var searchBtn = document.getElementById('button');
 var giphyApiKey = 'F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y';
 var omdbApiKey = '9add4f79';
 // var imdbURL = 'https://imdb-api.com/en/API/Keyword/' ;
-var giphyURL ='https://api.giphy.com/v1/gifs/search?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&q=';
+var giphyURL = 'https://api.giphy.com/v1/gifs/search?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&q=';
 var omdbURL = 'http://www.omdbapi.com/?apikey=9add4f79&s='
 
-
-
-var handleSearchSubmit = function(event){
+// input = user search id=input
+// select options dropdowns, id= type
+var handleSearchSubmit = function (event) {
     event.preventDefault();
     console.log('button works!');
     console.log(input.value);
     var id = input.value;
-    if(id){
+    if (id) {
         userInput(id);
         giphySearch(id);
     } else {
@@ -29,35 +30,119 @@ var handleSearchSubmit = function(event){
     }
 }
 
-var giphySearch = function(userSearch){
-    var giphySearchURL = giphyURL + userSearch + '&limit=25&offset=0&rating=g&lang=en' ;
+var giphySearch = function (userSearch) {
+    var giphySearchURL = giphyURL + userSearch + '&limit=25&offset=0&rating=g&lang=en';
     fetch(giphySearchURL)
-    .then(function(response){
-        if(response.ok)
-        return response.json();
-    })
-    .then(function(data){
-        return console.log(data);
-    })
-    .catch(error => console.log('error', error));
+        .then(function (response) {
+            if (response.ok)
+                return response.json();
+        })
+        .then(function (data) {
+            return console.log(data);
+        })
+        .catch(error => console.log('error', error));
 }
 
 
-var userInput = function(userSearch){
-    var userSearchURL = omdbURL + userSearch;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var userInput = function (userSearch) {
+    var userSearchURL = omdbURL + userSearch + '&type';
     // console.log(userSearchURL);
     fetch(userSearchURL)
-    .then(function (response) {
-        if(response.ok)
-        return response.json();
-    })
-    .then(function (result) {
-        return console.log(result);
-    })
-    .catch(error => console.log('error', error));
+        .then(function (response) {
+            if (response.ok)
+                return response.json();
+        })
+        .then(function (result) {
+            console.log(result);
+            for(var i = 0; i < 10; i++){
+                
+                var cardEl = document.createElement('div')
+                var h3El = document.createElement('h2') // title
+                var typeEl = document.createElement('h3')// type
+                var yearEl = document.createElement('h3') // year
+                h3El.textContent = 'Title:' + result.Search[i].Title;
+                typeEl.textContent = 'Type: ' + result.Search[i].Type;
+                yearEl.textContent = 'Year: ' + result.Search[i].Year;
+    
+                cardEl.appendChild(h3El);
+                cardEl.appendChild(typeEl);
+                cardEl.appendChild(yearEl);
+    
+                displayInfo.appendChild(cardEl);
+            }
+        })
+        .catch(error => console.log('error', error));
 }
 
 
 
 
-searchBtn.addEventListener('click',handleSearchSubmit);
+searchBtn.addEventListener('click', handleSearchSubmit);
