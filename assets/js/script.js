@@ -1,7 +1,9 @@
 //api omdbapi: http://www.omdbapi.com/?i=tt3896198&apikey=9add4f79
-var displayInfo = document.querySelector('#center-div')
+var displayInfo = document.querySelector('#center-div');
+var giphyResults = document.querySelector('#aside-right');
 var formEl = document.querySelector('#searching-page');
 var input = document.querySelector('#input');
+var dropdown = document.querySelector('#format');
 var searchBtn = document.getElementById('button');
 // var apiKey = 'k_iblvk1h1';
 var giphyApiKey = 'F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y';
@@ -35,16 +37,24 @@ var giphySearch = function (userSearch) {
                 return response.json();
         })
         .then(function (data) {
-            return console.log(data);
+             console.log(data);
+             for(var i = 0; i < 5; i++){
+                
+              var newCardEl = document.createElement('div')
+              var imgEl = document.createElement('img');
+              imgEl.src = data.data[i].images['480w_still'].url;
+              imgEl.width = 480;
+
+              newCardEl.appendChild(imgEl);
+  
+              giphyResults.appendChild(newCardEl);
+             }
         })
         .catch(error => console.log('error', error));
 }
 
-
-
-
-var userInput = function (userSearch) {
-    var userSearchURL = omdbURL + userSearch + '&type';
+var userInput = function (userSearch, movieType) {
+    var userSearchURL = omdbURL + userSearch + '&type' + movieType;
     // console.log(userSearchURL);
     fetch(userSearchURL)
         .then(function (response) {
