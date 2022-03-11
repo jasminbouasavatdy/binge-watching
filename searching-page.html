@@ -1,68 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>Binge-watching Search</title>
-  </head>
-  <body>
-    <header class="inline">
-      <h1 class="d-inline">Searching page</h1>
-      <form id="searching-page">
-        <input type="text" id="searchTerm" name="input" />
-      </form>
 
-      <select class="form-select d-inline" id="format" name="format">
-        <option value="" selected>---</option>
-        <option value="movie">Movie</option>
-        <option value="series">Series</option>
-        <option value="episode">Episode</option>
-      </select>
-      <button
-        class="btn btn-outline-warning d-inline"
-        id="button"
-        type="button"
-      >
-        Search
-      </button>
-    </header>
-    <div class="row">
-      <div class="col-2">
-        <div id="aside-left" class="row"></div>
-      </div>
-      <div id="center-div" class="col-7">
-        <button class="col-1 saveBtn"><i class="fas fa-save"></i></button>movie
-        link output
-      </div>
-      <div class="contaner">
-        <div id="tv-div">
-          <img
-            id="tv-box"
-            src="./assets/images/television-png-tv-9.png"
-            alt="tv"
-            width="400px"
-          />
-        </div>
-        <div id="aside-right" class="col-3"></div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inconsolata&display=swap" rel="stylesheet">
+  <title>BW-Search</title>
+</head>
+
+<body>
+  <header class="inline">
+    <h1 class="d-inline">Binge-Watching</h1>
+    <form id="searching-page">
+      <input type="text" id="searchTerm" name="input" />
+    </form>
+
+    <select class="form-select d-inline" id="format" name="format">
+      <option value="" selected>---</option>
+      <option value="movie">Movie</option>
+      <option value="series">Series</option>
+      <option value="episode">Episode</option>
+    </select>
+    <button class="btn btn-outline-warning d-inline" id="button" type="button">
+      Search
+    </button>
+  </header>
+  <div class="row">
+    <div class="col-2">
+      <div id="aside-left" class="row"></div>
     </div>
+    <div id="center-div" class="col-7">
+      
+    </div>
+    <div class="contaner">
+      <div id="tv-div">
+        <img id="tv-box" src="./assets/images/television-png-tv-9.png" alt="tv" width="400px" />
+      </div>
+      <div id="aside-right" class="col-3"></div>
+    </div>
+  </div>
 
-    <script src="./assets/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  </body>
+  <script src="./assets/js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
+
 </html>
