@@ -1,7 +1,7 @@
 //api omdbapi: http://www.omdbapi.com/?i=tt3896198&apikey=9add4f79
 var displayInfoEl = document.querySelector("#center-div");
 var giphyResultsEl = document.querySelector("#aside-right");
-
+var clearHistoryBtnEl = document.querySelector("#clear");
 var savedResultsEl = document.querySelector("#aside-left");
 var formEl = document.querySelector("#searching-page");
 var searchTermEl = document.querySelector("#searchTerm");
@@ -56,7 +56,7 @@ var handleSearchSubmit = function (event) {
   history();
 };
 
-function history() {
+function history() { //aside-left
   var storedHistory = JSON.parse(localStorage.getItem("binge")) || [];
   console.log(storedHistory);
   savedResultsEl.innerHTML = "";
@@ -131,7 +131,7 @@ var userInput = function (userSearch, movieType) {
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
-          cardEl.classList.add('card', 'my-5','p-3');
+          cardEl.classList.add('card', 'my-5', 'p-3');
           var h3El = document.createElement("h2"); // title
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
@@ -139,6 +139,8 @@ var userInput = function (userSearch, movieType) {
           var icon = document.createElement("i");
           var cardContentEl = document.createElement("div");
           cardEl.classList.add("d-flex", "justify-content-between");
+
+          savedBtn.setAttribute('data-title',result.Search[i].Title);
 
           cardContentEl.classList.add("card-content");
           h3El.textContent = "Title:" + result.Search[i].Title;
@@ -160,4 +162,19 @@ var userInput = function (userSearch, movieType) {
     .catch((error) => console.log("error", error));
 };
 
+
+
+
+
 searchBtn.addEventListener("click", handleSearchSubmit);
+displayInfoEl.addEventListener('click',function(event){
+  if (event.target.matches('.btn')){
+    var storedTitle = JSON.parse(localStorage.getItem('title')) || [];
+    // console.log(event.target.dataset.title);
+    storedTitle.push(
+      event.target.dataset.title
+    )
+    localStorage.setItem('title',JSON.stringify(storedTitle));
+  }
+})
+
