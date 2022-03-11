@@ -105,12 +105,12 @@ var giphySearch = function (userSearch) {
       imgEl.alt = data.data.title;
       imgEl.width = 300;
       imgEl.height = 250;
-      //newCardEl.innerHTML = "";
+      // newCardEl.innerHTML = "";
       newCardEl.appendChild(imgEl);
 
       giphyResultsEl.appendChild(newCardEl);
 
-      //giphyResultsEl.style.position = "absolute";
+      // giphyResultsEl.style.position = "absolute";
     })
     .catch((error) => console.log("error", error));
 };
@@ -137,13 +137,12 @@ var userInput = function (userSearch, movieType) {
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
           var savedBtn = document.createElement("button"); //saving button
-
           var icon = document.createElement("i");
           var cardContentEl = document.createElement("div");
           cardEl.classList.add("d-flex", "justify-content-between");
-          savedBtn.setAttribute("data-title", h3El);
-          savedBtn.addEventListener("click", function (event) {});
-          console.log(savedBtn);
+          // savedBtn.setAttribute("data-title", h3El);
+          // savedBtn.addEventListener("click", function (event) {});
+          // console.log(savedBtn);
 
           // var saveBtnHandler = function () {
           //   localStorage.setItem();
@@ -177,12 +176,12 @@ var userInput = function (userSearch, movieType) {
 
 //when you click on save icon-button
 
-searchBtn.addEventListener("click", handleSearchSubmit);
-
 clearHistoryBtnEl.addEventListener("click", function () {
   localStorage.setItem("binge", JSON.stringify([]));
   savedResultsEl.innerHTML = "";
 });
+searchBtn.addEventListener("click", handleSearchSubmit);
+
 displayInfoEl.addEventListener("click", function (event) {
   if (event.target.matches(".btn")) {
     var storedTitle = JSON.parse(localStorage.getItem("title")) || [];
