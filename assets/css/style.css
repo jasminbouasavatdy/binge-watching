@@ -4,7 +4,10 @@ body {
 header {
   background-color: rgb(10, 167, 106);
 }
-
+.main .row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
 #aside-left {
   background-color: orange;
 }
@@ -14,6 +17,19 @@ header {
 #aside-right {
   background-color: greenyellow;
   height: 800px;
+}
+#tv-box {
+  align-items: center;
+}
+div .container {
+  position: relative;
+}
+#aside-right {
+  position: absolute;
+}
+#tv-div {
+  position: absolute;
+  z-index: 8;
 }
 /*// Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) { ... }

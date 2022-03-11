@@ -14,32 +14,42 @@
     <title>Binge-watching Search</title>
   </head>
   <body>
-    <header class="">
-      <h1>Searching page</h1>
+    <header class="inline">
+      <h1 class="d-inline">Searching page</h1>
       <form id="searching-page">
-        <input type="text" id="input" name="input" />
+        <input type="text" id="searchTerm" name="input" />
       </form>
 
-      <select class="form-select" id="format" name="format">
+      <select class="form-select d-inline" id="format" name="format">
         <option value="" selected>---</option>
         <option value="movie">Movie</option>
         <option value="series">Series</option>
         <option value="episode">Episode</option>
       </select>
-      <button class="btn btn-outline-warning" id="button" type="button">
+      <button
+        class="btn btn-outline-warning d-inline"
+        id="button"
+        type="button"
+      >
         Search
       </button>
     </header>
-    <div class="row">
+    <div class="main row">
       <div class="col-2">
-        <div id="aside-left" class="row">
-
-        </div>
+        <div id="aside-left" class="row"></div>
       </div>
       <div id="center-div" class="col-7">movie link output</div>
-      <div id="aside-right" class="col-3">
-        
+      <div class="contaner">
+        <div id="tv-div">
+          <img
+            id="tv-box"
+            src="./assets/images/television-png-tv-9.png"
+            alt="tv"
+            width="350px"
+          />
         </div>
+        <div id="aside-right" class="col-3"></div>
+      </div>
     </div>
 
     <script src="./assets/js/script.js"></script>
