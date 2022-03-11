@@ -28,6 +28,7 @@ var handleSearchSubmit = function (event) {
     userInput(searchTerm, format);
     giphySearch(searchTerm);
   } else {
+    //modal window
     console.log("not a valid input"); //create a modal window
   }
 
@@ -98,6 +99,7 @@ var giphySearch = function (userSearch) {
       giphyResultsEl.innerHTML = "";
       var newCardEl = document.createElement("div");
       var imgEl = document.createElement("img");
+
       imgEl.src = data.data.images.downsized.url;
       imgEl.alt = data.data.title;
       imgEl.width = 300;
@@ -106,6 +108,7 @@ var giphySearch = function (userSearch) {
       newCardEl.appendChild(imgEl);
 
       giphyResultsEl.appendChild(newCardEl);
+
       //giphyResultsEl.style.position = "absolute";
     })
     .catch((error) => console.log("error", error));
@@ -131,14 +134,24 @@ var userInput = function (userSearch, movieType) {
           var h3El = document.createElement("h2"); // title
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
+          var savedBtn = document.createElement("button"); //saving button
+          var icon = document.createElement("i");
+          var cardContentEl = document.createElement("div");
+          cardEl.classList.add("d-flex", "justify-content-between");
+
+          cardContentEl.classList.add("card-content");
           h3El.textContent = "Title:" + result.Search[i].Title;
           typeEl.textContent = "Type: " + result.Search[i].Type;
           yearEl.textContent = "Year: " + result.Search[i].Year;
+          savedBtn.classList.add("btn", "btn-primary");
+          icon.classList.add("fa-regular", "fa-save");
+          savedBtn.appendChild(icon);
+          cardContentEl.appendChild(h3El);
+          cardContentEl.appendChild(typeEl);
 
-          cardEl.appendChild(h3El);
-          cardEl.appendChild(typeEl);
-          cardEl.appendChild(yearEl);
-
+          cardContentEl.appendChild(yearEl);
+          cardEl.appendChild(cardContentEl);
+          cardEl.appendChild(savedBtn);
           displayInfoEl.appendChild(cardEl);
         }
       }
