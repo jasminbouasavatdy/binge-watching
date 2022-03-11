@@ -56,7 +56,8 @@ var handleSearchSubmit = function (event) {
   history();
 };
 
-function history() { //aside-left
+function history() {
+  //aside-left
   var storedHistory = JSON.parse(localStorage.getItem("binge")) || [];
   console.log(storedHistory);
   savedResultsEl.innerHTML = "";
@@ -131,16 +132,28 @@ var userInput = function (userSearch, movieType) {
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
-          cardEl.classList.add('card', 'my-5', 'p-3');
+          cardEl.classList.add("card", "my-5", "p-3");
           var h3El = document.createElement("h2"); // title
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
           var savedBtn = document.createElement("button"); //saving button
+
           var icon = document.createElement("i");
           var cardContentEl = document.createElement("div");
           cardEl.classList.add("d-flex", "justify-content-between");
+          savedBtn.setAttribute("data-title", h3El);
+          savedBtn.addEventListener("click", function (event) {});
+          console.log(savedBtn);
 
-          savedBtn.setAttribute('data-title',result.Search[i].Title);
+          // var saveBtnHandler = function () {
+          //   localStorage.setItem();
+          //   savedBtn.setAttribute("data-title", h3El);
+          //   savedBtn.setAttribute("data-type", typeEl);
+          //   savedBtn.addEventListener("click", saveBtnHandler);
+          //   console.log("clicked", saveBtnHandler);
+          // };
+
+          savedBtn.setAttribute("data-title", result.Search[i].Title);
 
           cardContentEl.classList.add("card-content");
           h3El.textContent = "Title:" + result.Search[i].Title;
@@ -162,19 +175,19 @@ var userInput = function (userSearch, movieType) {
     .catch((error) => console.log("error", error));
 };
 
-
-
-
+//when you click on save icon-button
 
 searchBtn.addEventListener("click", handleSearchSubmit);
-displayInfoEl.addEventListener('click',function(event){
-  if (event.target.matches('.btn')){
-    var storedTitle = JSON.parse(localStorage.getItem('title')) || [];
-    // console.log(event.target.dataset.title);
-    storedTitle.push(
-      event.target.dataset.title
-    )
-    localStorage.setItem('title',JSON.stringify(storedTitle));
-  }
-})
 
+clearHistoryBtnEl.addEventListener("click", function () {
+  localStorage.setItem("binge", JSON.stringify([]));
+  savedResultsEl.innerHTML = "";
+});
+displayInfoEl.addEventListener("click", function (event) {
+  if (event.target.matches(".btn")) {
+    var storedTitle = JSON.parse(localStorage.getItem("title")) || [];
+    // console.log(event.target.dataset.title);
+    storedTitle.push(event.target.dataset.title);
+    localStorage.setItem("title", JSON.stringify(storedTitle));
+  }
+});
