@@ -27,49 +27,36 @@
     <title>BW-Search</title>
   </head>
 
-  <body>
-    <header class="inline">
-      <h1 class="d-inline">Binge-Watching</h1>
-      <form id="searching-page">
-        <input type="text" id="searchTerm" name="input" />
-      </form>
+<body>
+  <header class="inline">
+    <h1 class="d-inline">Binge-Watching</h1>
+    <nav>
+      <a href="#aside-left">Last Saved Binge</a>
+    </nav>
+    <form id="searching-page">
+      <input type="text" id="searchTerm" name="input" />
+    </form>
 
-      <select class="form-select d-inline" id="format" name="format">
-        <option value="" selected>---</option>
-        <option value="movie">Movie</option>
-        <option value="series">Series</option>
-        <option value="episode">Episode</option>
-      </select>
-      <button
-        class="btn btn-outline-warning d-inline"
-        id="button"
-        type="button"
-      >
-        Search
-      </button>
-    </header>
+    <select class="form-select d-inline" id="format" name="format">
+      <option value="" selected>---</option>
+      <option value="movie">Movie</option>
+      <option value="series">Series</option>
+      <option value="episode">Episode</option>
+    </select>
+    <button class="btn btn-outline-warning d-inline" id="button" type="button">
+      Search
+    </button>
+  </header>
     <div class="row">
-      <div class="col-2">
-        <div id="aside-left" class="row"></div>
-        <button
-          class="btn btn-outline-danger d-inline"
-          id="clear"
-          type="button"
-        >
-          Clear
-        </button>
-      </div>
-      <div id="center-div" class="col-7"></div>
-      <div class="contaner">
-        <div id="tv-div">
-          <img
-            id="tv-box"
-            src="./assets/images/television-png-tv-9.png"
-            alt="tv"
-            width="400px"
-          />
-        </div>
-        <div id="aside-right" class="col-3"></div>
+    <div class="col-2">
+      <div id="aside-left" class="row"></div>
+    </div>
+    <div id="center-div" class="col-7">
+      
+    </div>
+    <div class="contaner">
+      <div id="tv-div">
+        <img id="tv-box" src="./assets/images/television-png-tv-9.png" alt="tv" width="400px" />
       </div>
     </div>
 
