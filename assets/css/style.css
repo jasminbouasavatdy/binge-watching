@@ -18,7 +18,9 @@ a:hover {
   border-bottom: solid;
   color: #ffc107;
 }
-h1,
+h1 {
+  font-family: "Bangers", cursive;
+}
 h2 {
   font-family: "Bangers", cursive;
 }
