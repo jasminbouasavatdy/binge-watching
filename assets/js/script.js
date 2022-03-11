@@ -132,7 +132,7 @@ var userInput = function (userSearch, movieType) {
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
-          cardEl.classList.add("card", "my-5", "p-3");
+          cardEl.classList.add("card", "p-3");
           var h3El = document.createElement("h2"); // title
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
@@ -173,6 +173,9 @@ var userInput = function (userSearch, movieType) {
     })
     .catch((error) => console.log("error", error));
 };
+
+
+
 
 //when you click on save icon-button
 

@@ -21,28 +21,27 @@
   <header class="inline">
     <h1 class="d-inline">Binge-Watching</h1>
     <nav>
-      <a href="#aside-left">Last Saved Binge</a>
+      <a href="#aside-left">Saved Binges</a>
     </nav>
-    <form id="searching-page">
-      <input type="text" id="searchTerm" name="input" />
+    <form id="searching-page" class="d-flex justify-content-center">
+      <input type="text" id="searchTerm" name="input" placeholder="Search here!" />
+      <select class="form-select d-inline" id="format" name="format">
+        <option value="" selected>---</option>
+        <option value="movie">Movie</option>
+        <option value="series">Series</option>
+        <option value="episode">Episode</option>
+      </select>
+      <button class="btn btn-outline-warning d-inline" id="button" type="button">
+        Search
+      </button>
     </form>
-
-    <select class="form-select d-inline" id="format" name="format">
-      <option value="" selected>---</option>
-      <option value="movie">Movie</option>
-      <option value="series">Series</option>
-      <option value="episode">Episode</option>
-    </select>
-    <button class="btn btn-outline-warning d-inline" id="button" type="button">
-      Search
-    </button>
   </header>
 
   <div class="row">
     <div class="col-2">
-      <div id="aside-left" class="row"></div>
+      <div id="aside-left" class="row "></div>
       <button
-      class="btn btn-outline-danger d-inline"
+      class="btn btn-outline-warning d-inline"
       id="clear"
       type="button"
     >
