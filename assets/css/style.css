@@ -2,13 +2,31 @@ body {
   background-color: grey;
 }
 header {
-  background-color: #fff;
+  background-color: rgb(179, 60, 60);
+}
+header nav {
+  padding-top: 15px;
+  margin-right: 50px;
+  float: right;
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  
+}
+ nav a {
+  color: black;
+}
+a:hover {
+  border-bottom: solid;
+  color:#ffc107 ;
 }
 h1, h2 {
   font-family: 'Bangers', cursive;
 }
 h3 {
   font-family: 'Inconsolata', monospace;
+}
+#searching-page {
+  
 }
 .main .row {
   margin-right: 0px;
