@@ -2,13 +2,14 @@ body {
   background-color: grey;
 }
 header {
-  background-color: #fff;
+  background-color: rgb(117, 60, 60);
 }
-h1, h2 {
-  font-family: 'Bangers', cursive;
+h1,
+h2 {
+  font-family: "Bangers", cursive;
 }
 h3 {
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
 }
 .main .row {
   margin-right: 0px;

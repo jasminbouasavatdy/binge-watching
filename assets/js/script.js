@@ -1,6 +1,7 @@
 //api omdbapi: http://www.omdbapi.com/?i=tt3896198&apikey=9add4f79
 var displayInfoEl = document.querySelector("#center-div");
 var giphyResultsEl = document.querySelector("#aside-right");
+var clearHistoryBtnEl = document.querySelector("#clear");
 
 var savedResultsEl = document.querySelector("#aside-left");
 var formEl = document.querySelector("#searching-page");
@@ -131,14 +132,26 @@ var userInput = function (userSearch, movieType) {
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
-          cardEl.classList.add('card', 'my-5','p-3');
+          cardEl.classList.add("card", "my-5", "p-3");
           var h3El = document.createElement("h2"); // title
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
           var savedBtn = document.createElement("button"); //saving button
+
           var icon = document.createElement("i");
           var cardContentEl = document.createElement("div");
           cardEl.classList.add("d-flex", "justify-content-between");
+          savedBtn.setAttribute("data-title", h3El);
+          savedBtn.addEventListener("click", function (event) {});
+          console.log(savedBtn);
+
+          // var saveBtnHandler = function () {
+          //   localStorage.setItem();
+          //   savedBtn.setAttribute("data-title", h3El);
+          //   savedBtn.setAttribute("data-type", typeEl);
+          //   savedBtn.addEventListener("click", saveBtnHandler);
+          //   console.log("clicked", saveBtnHandler);
+          // };
 
           cardContentEl.classList.add("card-content");
           h3El.textContent = "Title:" + result.Search[i].Title;
@@ -158,6 +171,15 @@ var userInput = function (userSearch, movieType) {
       }
     })
     .catch((error) => console.log("error", error));
-};
+
+ 
+
+//when you click on save icon-button
 
 searchBtn.addEventListener("click", handleSearchSubmit);
+
+
+clearHistoryBtnEl.addEventListener("click", function () {
+  localStorage.setItem("binge", JSON.stringify([]));
+  savedResultsEl.innerHTML = "";
+});
