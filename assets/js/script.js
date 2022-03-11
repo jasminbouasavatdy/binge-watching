@@ -66,7 +66,7 @@ function history() {
     termCol.setAttribute("class", "col-12");
     searchTermButton.setAttribute(
       "class",
-      "btn btn-info justify-content-center"
+      "btn btn-warning justify-content-center"
     );
     searchTermButton.style.height = "90%";
     searchTermButton.style.width = "90%";
@@ -128,10 +128,11 @@ var userInput = function (userSearch, movieType) {
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
+          cardEl.classList.add('card','my-5','p-3')
           var h3El = document.createElement("h2"); // title
           var typeEl = document.createElement("h3"); // type
           var yearEl = document.createElement("h3"); // year
-          h3El.textContent = "Title:" + result.Search[i].Title;
+          h3El.textContent = "Title: " + result.Search[i].Title;
           typeEl.textContent = "Type: " + result.Search[i].Type;
           yearEl.textContent = "Year: " + result.Search[i].Year;
 

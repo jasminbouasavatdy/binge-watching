@@ -2,20 +2,26 @@ body {
   background-color: grey;
 }
 header {
-  background-color: rgb(10, 167, 106);
+  background-color: #fff;
+}
+h1,h2 {
+  font-family: 'Bangers', cursive;
+}
+h3 {
+  font-family: 'Inconsolata', monospace;
 }
 .main .row {
   margin-right: 0px;
   margin-left: 0px;
 }
 #aside-left {
-  background-color: orange;
+  background-color: #fff;
 }
 #center-div {
-  background-color: #5f9ea0;
+  background-color: #fff;
 }
 #aside-right {
-  background-color: greenyellow;
+  background-color: #fff;
   height: 800px;
 }
 #tv-box {
