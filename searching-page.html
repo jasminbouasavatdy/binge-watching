@@ -19,44 +19,49 @@
 
 <body>
   <header class="inline">
-    <h1 class="d-inline">Binge-Watching</h1>
-    <nav>
-      <a href="#aside-left">Saved Binges</a>
-    </nav>
+    <div>
+    <h1 class="d-flex justify-content-center">Binge-Watching</h1>
+  </div>
+
     <form id="searching-page" class="d-flex justify-content-center">
       <input type="text" id="searchTerm" name="input" placeholder="Search here!" />
-      <select class="form-select d-inline" id="format" name="format">
+      <select class="form-select d-flex justify-content-center" id="format" name="format">
         <option value="" selected>---</option>
         <option value="movie">Movie</option>
         <option value="series">Series</option>
         <option value="episode">Episode</option>
       </select>
-      <button class="btn btn-outline-warning d-inline" id="button" type="button">
+      <button class="btn btn-warning d-inline" id="button" type="button">
         Search
       </button>
     </form>
   </header>
-
-  <div class="row">
+  <div id="modalWindow">
+    <div id="modal-container">
+      <div id="modal">
+        <h2>Sorry!</h2>
+        <p id="modal-text">
+          Your result has not been found. Please try again!
+        </p>
+        <button id="closeModalBtn" type="button" class="btn btn-secondary">
+          close
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="main-content" class="row">
     <div class="col-2">
-      <div id="aside-left" class="row "></div>
-      <button
-      class="btn btn-outline-warning d-inline"
-      id="clear"
-      type="button"
-    >
-      Clear
-    </button>
+      <div id="aside-left" class="row"></div>
+      <button class="btn btn-warning d-inline" id="clear" type="button">
+        Clear
+      </button>
     </div>
-    <div id="center-div" class="col-7">
-    </div>
-
+    <div id="center-div" class="col-7"></div>
     <div class="contaner">
       <div id="tv-div">
         <img id="tv-box" src="./assets/images/television-png-tv-9.png" alt="tv" width="400px" />
       </div>
     </div>
-
     <div id="aside-right" class="col-3"></div>
   </div>
   <script src="./assets/js/script.js"></script>
