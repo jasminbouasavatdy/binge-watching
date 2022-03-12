@@ -7,6 +7,7 @@ var formEl = document.querySelector("#searching-page");
 var searchTermEl = document.querySelector("#searchTerm");
 var dropdown = document.querySelector("#format");
 var searchBtn = document.getElementById("button");
+var mainContentEl = document.getElementById("main-content");
 // var apiKey = 'k_iblvk1h1';
 var giphyApiKey = "F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y";
 var omdbApiKey = "9add4f79";
@@ -14,7 +15,6 @@ var omdbApiKey = "9add4f79";
 var giphyURL =
   "https://api.giphy.com/v1/gifs/random?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&tag=";
 var omdbURL = "http://www.omdbapi.com/?apikey=9add4f79&s=";
-
 // select options dropdowns, id= type
 var handleSearchSubmit = function (event) {
   event.preventDefault();
@@ -23,7 +23,6 @@ var handleSearchSubmit = function (event) {
   var searchTerm = searchTermEl.value;
   var format = dropdown.value;
   console.log(format);
-
   if (searchTerm && format) {
     userInput(searchTerm, format);
     giphySearch(searchTerm);
@@ -31,9 +30,7 @@ var handleSearchSubmit = function (event) {
     //modal window
     console.log("not a valid input"); //create a modal window
   }
-
   var storedInput = JSON.parse(localStorage.getItem("binge")) || [];
-
   // use function some to check if there is already a save item with that id and option
   if (
     !storedInput.some(
@@ -46,22 +43,13 @@ var handleSearchSubmit = function (event) {
     });
     localStorage.setItem("binge", JSON.stringify(storedInput));
   }
-
-  /*var newInput = storedInput.concat({
-    input: id,
-    option: format,
-  });
-  localStorage.setItem("binge", JSON.stringify(newInput));*/
-
   history();
 };
-
 function history() {
   //aside-left
   var storedHistory = JSON.parse(localStorage.getItem("binge")) || [];
   console.log(storedHistory);
   savedResultsEl.innerHTML = "";
-
   for (var searchItem of storedHistory) {
     var searchTermButton = document.createElement("button");
     var termCol = document.createElement("div");
@@ -74,7 +62,6 @@ function history() {
     searchTermButton.style.width = "90%";
     searchTermButton.textContent =
       searchItem.searchTerm + " - " + searchItem.format;
-
     // save the searchterm and format in data attributes to retrieve later when clicked
     searchTermButton.setAttribute("data-searchterm", searchItem.searchTerm);
     searchTermButton.setAttribute("data-format", searchItem.format);
@@ -88,7 +75,6 @@ function history() {
   }
 }
 history();
-
 var giphySearch = function (userSearch) {
   var giphySearchURL = giphyURL + userSearch;
   fetch(giphySearchURL)
@@ -100,21 +86,17 @@ var giphySearch = function (userSearch) {
       giphyResultsEl.innerHTML = "";
       var newCardEl = document.createElement("div");
       var imgEl = document.createElement("img");
-
       imgEl.src = data.data.images.downsized.url;
       imgEl.alt = data.data.title;
       imgEl.width = 300;
       imgEl.height = 250;
       // newCardEl.innerHTML = "";
       newCardEl.appendChild(imgEl);
-
       giphyResultsEl.appendChild(newCardEl);
-
       // giphyResultsEl.style.position = "absolute";
     })
     .catch((error) => console.log("error", error));
 };
-
 var userInput = function (userSearch, movieType) {
   var userSearchURL = omdbURL + userSearch + "&type=" + movieType;
   console.log(userSearchURL);
@@ -125,10 +107,18 @@ var userInput = function (userSearch, movieType) {
     .then(function (result) {
       console.log(result);
       displayInfoEl.innerHTML = "";
-
       // if fetch request succeeded but omdb couldn't find anything then display the error
       if (result.Error) {
-        alert(result.Error);
+        //var openModal = document.getElementById("modalBtn");
+        var modalContainer = document.getElementById("modal-container");
+        var closeModalBtn = document.getElementById("closeModalBtn");
+        modalContainer.classList.add("show");
+        mainContentEl.classList.add("hidden");
+        closeModalBtn.addEventListener("click", () => {
+          var modalContainer = document.getElementById("modal-container");
+          modalContainer.classList.remove("show");
+          mainContentEl.classList.remove("hidden");
+        });
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
@@ -140,20 +130,7 @@ var userInput = function (userSearch, movieType) {
           var icon = document.createElement("i");
           var cardContentEl = document.createElement("div");
           cardEl.classList.add("d-flex", "justify-content-between");
-          // savedBtn.setAttribute("data-title", h3El);
-          // savedBtn.addEventListener("click", function (event) {});
-          // console.log(savedBtn);
-
-          // var saveBtnHandler = function () {
-          //   localStorage.setItem();
-          //   savedBtn.setAttribute("data-title", h3El);
-          //   savedBtn.setAttribute("data-type", typeEl);
-          //   savedBtn.addEventListener("click", saveBtnHandler);
-          //   console.log("clicked", saveBtnHandler);
-          // };
-
           savedBtn.setAttribute("data-title", result.Search[i].Title);
-
           cardContentEl.classList.add("card-content");
           h3El.textContent = "Title:" + result.Search[i].Title;
           typeEl.textContent = "Type: " + result.Search[i].Type;
@@ -163,7 +140,6 @@ var userInput = function (userSearch, movieType) {
           savedBtn.appendChild(icon);
           cardContentEl.appendChild(h3El);
           cardContentEl.appendChild(typeEl);
-
           cardContentEl.appendChild(yearEl);
           cardEl.appendChild(cardContentEl);
           cardEl.appendChild(savedBtn);
@@ -173,18 +149,12 @@ var userInput = function (userSearch, movieType) {
     })
     .catch((error) => console.log("error", error));
 };
-
-
-
-
 //when you click on save icon-button
-
 clearHistoryBtnEl.addEventListener("click", function () {
   localStorage.setItem("binge", JSON.stringify([]));
   savedResultsEl.innerHTML = "";
 });
 searchBtn.addEventListener("click", handleSearchSubmit);
-
 displayInfoEl.addEventListener("click", function (event) {
   if (event.target.matches(".btn")) {
     var storedTitle = JSON.parse(localStorage.getItem("title")) || [];
