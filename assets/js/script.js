@@ -2,12 +2,15 @@
 var displayInfoEl = document.querySelector("#center-div");
 var giphyResultsEl = document.querySelector("#aside-right");
 var clearHistoryBtnEl = document.querySelector("#clear");
+var clearBtnDivEl = document.querySelector("#clearBtnDiv");
 var savedResultsEl = document.querySelector("#aside-left");
 var formEl = document.querySelector("#searching-page");
 var searchTermEl = document.querySelector("#searchTerm");
 var dropdown = document.querySelector("#format");
 var searchBtn = document.getElementById("button");
 var mainContentEl = document.getElementById("main-content");
+var modalContainerEl = document.getElementById("modal-container");
+var modalErrorMsgEl = document.getElementById("modal-text");
 // var apiKey = 'k_iblvk1h1';
 var giphyApiKey = "F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y";
 var omdbApiKey = "9add4f79";
@@ -18,17 +21,23 @@ var omdbURL = "http://www.omdbapi.com/?apikey=9add4f79&s=";
 // select options dropdowns, id= type
 var handleSearchSubmit = function (event) {
   event.preventDefault();
+
   //console.log("button works!");
   //console.log(searchTermEl.value);
   var searchTerm = searchTermEl.value;
   var format = dropdown.value;
-  console.log(format);
+  console.log(searchTerm, format);
+
   if (searchTerm && format) {
     userInput(searchTerm, format);
     giphySearch(searchTerm);
   } else {
-    //modal window
-    console.log("not a valid input"); //create a modal window
+    modalErrorMsgEl.textContent = "Please select search term and search type!";
+    modalContainerEl.classList.add("show");
+    mainContentEl.classList.add("hidden");
+
+    console.log("not a valid input");
+    return;
   }
   var storedInput = JSON.parse(localStorage.getItem("binge")) || [];
   // use function some to check if there is already a save item with that id and option
@@ -45,12 +54,22 @@ var handleSearchSubmit = function (event) {
   }
   history();
 };
+
 function history() {
   //aside-left
   var storedHistory = JSON.parse(localStorage.getItem("binge")) || [];
   console.log(storedHistory);
   savedResultsEl.innerHTML = "";
+
+  if (storedHistory.length > 0) {
+    clearBtnDivEl.style.display = "block";
+  } else {
+    clearBtnDivEl.style.display = "none";
+  }
+
   for (var searchItem of storedHistory) {
+    clearBtnEl = document.querySelector(".col-2");
+    clearBtnEl.style.display = "block";
     var searchTermButton = document.createElement("button");
     var termCol = document.createElement("div");
     termCol.setAttribute("class", "col-12");
@@ -74,7 +93,9 @@ function history() {
     savedResultsEl.appendChild(termCol);
   }
 }
+
 history();
+
 var giphySearch = function (userSearch) {
   var giphySearchURL = giphyURL + userSearch;
   fetch(giphySearchURL)
@@ -93,10 +114,13 @@ var giphySearch = function (userSearch) {
       // newCardEl.innerHTML = "";
       newCardEl.appendChild(imgEl);
       giphyResultsEl.appendChild(newCardEl);
-      // giphyResultsEl.style.position = "absolute";
+
+      var tvOnEl = document.querySelector("#tv");
+      tvOnEl.style.display = "block";
     })
     .catch((error) => console.log("error", error));
 };
+
 var userInput = function (userSearch, movieType) {
   var userSearchURL = omdbURL + userSearch + "&type=" + movieType;
   console.log(userSearchURL);
@@ -109,16 +133,10 @@ var userInput = function (userSearch, movieType) {
       displayInfoEl.innerHTML = "";
       // if fetch request succeeded but omdb couldn't find anything then display the error
       if (result.Error) {
-        //var openModal = document.getElementById("modalBtn");
-        var modalContainer = document.getElementById("modal-container");
-        var closeModalBtn = document.getElementById("closeModalBtn");
-        modalContainer.classList.add("show");
+        modalErrorMsgEl.textContent =
+          "Your result has not been found. Please try again!";
+        modalContainerEl.classList.add("show");
         mainContentEl.classList.add("hidden");
-        closeModalBtn.addEventListener("click", () => {
-          var modalContainer = document.getElementById("modal-container");
-          modalContainer.classList.remove("show");
-          mainContentEl.classList.remove("hidden");
-        });
       } else {
         for (var i = 0; i < 10; i++) {
           var cardEl = document.createElement("div");
@@ -149,12 +167,16 @@ var userInput = function (userSearch, movieType) {
     })
     .catch((error) => console.log("error", error));
 };
+
 //when you click on save icon-button
-clearHistoryBtnEl.addEventListener("click", function () {
+clearHistoryBtnEl.addEventListener("click", function (event) {
   localStorage.setItem("binge", JSON.stringify([]));
   savedResultsEl.innerHTML = "";
+  clearBtnDivEl.style.display = "none";
 });
+
 searchBtn.addEventListener("click", handleSearchSubmit);
+
 displayInfoEl.addEventListener("click", function (event) {
   if (event.target.matches(".btn")) {
     var storedTitle = JSON.parse(localStorage.getItem("title")) || [];
@@ -162,4 +184,9 @@ displayInfoEl.addEventListener("click", function (event) {
     storedTitle.push(event.target.dataset.title);
     localStorage.setItem("title", JSON.stringify(storedTitle));
   }
+});
+
+document.getElementById("closeModalBtn").addEventListener("click", () => {
+  modalContainerEl.classList.remove("show");
+  mainContentEl.classList.remove("hidden");
 });
