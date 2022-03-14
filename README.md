@@ -48,6 +48,8 @@ THEN I am able to clear the data that I searched but still have it saved in loca
 
 
 # Visual
- ![A screenshot of the search page after you have done multiple searches.](./assets/images/binge-search.png)
-  
-  <!-- add screenshot here -->
+ ![A screenshot of the beginning page.](./assets/images/BW-Search.png)
+ ![A screenshot of the searching page.](./assets/images/BW-Search%20(1).png)
+
+
+  Live URL link to website: https://jasminbouasavatdy.github.io/binge-watching/
