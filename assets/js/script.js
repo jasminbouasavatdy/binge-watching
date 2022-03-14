@@ -32,7 +32,7 @@ var handleSearchSubmit = function (event) {
     userInput(searchTerm, format);
     giphySearch(searchTerm);
   } else {
-    modalErrorMsgEl.textContent = "Please select search term and search type!";
+    modalErrorMsgEl.textContent = "Please enter a search term and select a format!";
     modalContainerEl.classList.add("show");
     mainContentEl.classList.add("hidden");
 
