@@ -1,103 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-      integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bangers&family=Inconsolata&display=swap"
-      rel="stylesheet"
-    />
-    <title>BW-Search</title>
-  </head>
 
-  <body>
-    <header class="inline">
-      <div>
-        <h1 class="d-flex justify-content-center">Binge-Watching</h1>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inconsolata&display=swap" rel="stylesheet" />
+  <title>BW-Search</title>
+</head>
 
-      <form id="searching-page" class="d-flex justify-content-center">
-        <input
-          type="text"
-          id="searchTerm"
-          name="input"
-          placeholder="Search here!"
-        />
-        <select
-          class="form-select d-flex justify-content-center"
-          id="format"
-          name="format"
-        >
-          <option value="" selected>---</option>
-          <option value="movie">Movie</option>
-          <option value="series">Series</option>
-          <option value="episode">Episode</option>
-        </select>
-        <button class="btn btn-warning d-inline" id="button" type="button">
-          Search
+<body>
+  <header class="inline">
+    <div>
+      <h1 class="d-flex justify-content-center">Binge-Watching</h1>
+    </div>
+
+    <form id="searching-page" class="d-flex justify-content-center">
+      <input type="text" id="searchTerm" name="input" placeholder="Search here!" />
+      <select class="form-select d-flex justify-content-center" id="format" name="format">
+        <option value="" selected>---</option>
+        <option value="movie">Movie</option>
+        <option value="series">Series</option>
+        <option value="episode">Episode</option>
+      </select>
+      <button class="btn btn-warning d-inline" id="button" type="button">
+        Search
+      </button>
+    </form>
+  </header>
+
+  <div id="modalWindow">
+    <div id="modal-container">
+      <div id="modal">
+        <h2>Sorry!</h2>
+        <p id="modal-text"></p>
+        <button id="closeModalBtn" type="button" class="btn btn-secondary">
+          close
         </button>
-      </form>
-    </header>
+      </div>
+    </div>
+  </div>
+  <div id="main-content" class="row p-3">
+    <div class="col-2">
+      <div id="aside-left" class="row"></div>
+      <div id="clearBtnDiv">
+        <button id="clear" class="btn btn-warning d-flex" type="button">
+          Clear
+        </button>
+      </div>
+    </div>
+    <div id="center-div" class="col-7">
+      <div id="welcome-div">
+        <h1>Welcome to Binge-Watching</h1>
+        <p>
+          This is a web application where you can type in anything you want to
+          feature in your movie/series or even in just an episode.
+        </p>
+      </div>
+    </div>
+    <div id="tv">
+      <div id="tv-div">
+        <img id="tv-box" src="./assets/images/television-png-tv-9.png" alt="tv" width="400px" />
+      </div>
+      <div id="aside-right" class="col-3"></div>
+    </div>
+  </div>
+  <script src="./assets/js/script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</body>
 
-    <div id="modalWindow">
-      <div id="modal-container">
-        <div id="modal">
-          <h2>Sorry!</h2>
-          <p id="modal-text"></p>
-          <button id="closeModalBtn" type="button" class="btn btn-secondary">
-            close
-          </button>
-        </div>
-      </div>
-    </div>
-    <div id="main-content" class="row p-3">
-      <div class="col-2">
-        <div id="aside-left" class="row"></div>
-        <div id="clearBtnDiv">
-          <button id="clear" class="btn btn-warning d-flex" type="button">
-            Clear
-          </button>
-        </div>
-      </div>
-      <div id="center-div" class="col-7">
-        <div id="welcome-div">
-          <h1>Welcome to Binge-Watching</h1>
-          <p>
-            This is a web application where you can type in anything you want to
-            feature in your movie/series or even in just an episode.
-          </p>
-        </div>
-      </div>
-      <div id="tv">
-        <div id="tv-div">
-          <img
-            id="tv-box"
-            src="./assets/images/television-png-tv-9.png"
-            alt="tv"
-            width="400px"
-          />
-        </div>
-        <div id="aside-right" class="col-3"></div>
-      </div>
-    </div>
-    <script src="./assets/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  </body>
 </html>
