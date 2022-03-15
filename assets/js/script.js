@@ -17,7 +17,7 @@ var omdbApiKey = "9add4f79";
 // var imdbURL = 'https://imdb-api.com/en/API/Keyword/' ;
 var giphyURL =
   "https://api.giphy.com/v1/gifs/random?api_key=F3e2xxVXy3uVl11OIyTMTlFHZwmA6b8y&tag=";
-var omdbURL = "http://www.omdbapi.com/?apikey=9add4f79&s=";
+var omdbURL = "https://www.omdbapi.com/?apikey=9add4f79&s=";
 // select options dropdowns, id= type
 var handleSearchSubmit = function (event) {
   event.preventDefault();
